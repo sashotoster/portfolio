@@ -14,6 +14,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
+    puma (3.11.4)
     rack (1.6.10)
     rack-protection (1.5.5)
       rack
@@ -32,7 +33,8 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (~> 3.11)
+  puma (~> 3.11)
   sinatra (~> 1.4)
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
