@@ -11,6 +11,11 @@ set :user, 'webmaster'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 
+set :keep_releases, 2
+
+set :ssh_options, forward_agent: true
+
+set :format_options, log_file: 'shared/logs/capistrano.log'
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
@@ -24,9 +29,6 @@ set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
-set :keep_releases, 2
+append :linked_dirs, '.bundle'
 
-# Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, forward_agent: true
-
-set :format_options, log_file: 'shared/logs/capistrano.log'
+after 'deploy:published', 'bundler:clean'
