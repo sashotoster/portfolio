@@ -28,3 +28,5 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 set :ssh_options, forward_agent: true
+
+set :format_options, log_file: 'shared/logs/capistrano.log'
