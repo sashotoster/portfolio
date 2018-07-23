@@ -1,0 +1,6 @@
+development:
+  foo: development
+  bar: bar
+production:
+  foo: production
+  bar: bar
