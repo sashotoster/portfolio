@@ -29,6 +29,6 @@ set :format_options, log_file: 'shared/logs/capistrano.log'
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
-append :linked_dirs, '.bundle'
+#append :linked_dirs, ''
 
 after 'deploy:published', 'bundler:clean'
