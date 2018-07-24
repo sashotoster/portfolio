@@ -5,9 +5,7 @@ require 'capistrano/deploy' # Include default deployment tasks
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
-require 'capistrano/rvm'
 require 'capistrano/bundler'
-require 'capistrano/puma'
 require 'capistrano3-nginx'
 require 'capistrano-nvm'
 
