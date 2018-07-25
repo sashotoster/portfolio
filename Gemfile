@@ -9,10 +9,9 @@ gem 'sinatra', '~> 2.0'
 gem 'sinatra-contrib', '~> 2.0'
 gem 'puma', '~> 3.11'
 
-# Deployment
-gem 'capistrano', '~> 3.11'
-gem 'capistrano-rvm', '~> 0.1'
-gem 'capistrano-bundler', '~> 1.3'
-gem 'capistrano-npm', '~> 1.0'
-
-
+group :development do
+  gem 'capistrano', '~> 3.11'
+  gem 'capistrano-rvm', '~> 0.1'
+  gem 'capistrano-bundler', '~> 1.3'
+  gem 'capistrano-npm', '~> 1.0'
+end

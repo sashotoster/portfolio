@@ -10,7 +10,6 @@ set :ssh_options, forward_agent: true
 set :format_options, log_file: 'shared/logs/capistrano.log'
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :npm_target_path, -> { release_path.join('client') } # default not set
-set :npm_flags, '--production'
 # set :bundle_jobs, 4 # Equals to amount of cores
 
 # append :linked_files, "config/database.yml"
