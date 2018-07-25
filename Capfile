@@ -6,7 +6,6 @@ require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
 require 'capistrano/bundler'
-require 'capistrano3-nginx'
 require 'capistrano-nvm'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
