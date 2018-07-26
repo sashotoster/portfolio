@@ -14,11 +14,10 @@ set :bundle_jobs, 2 # Equals to amount of cores
 # append :linked_files, "config/database.yml"
 append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 
-after 'deploy:published', 'bundler:install'
+# Is bundle:install executed?
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
-
 
 namespace :deploy do
   desc 'Build React frontend client'
