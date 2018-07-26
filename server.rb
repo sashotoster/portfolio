@@ -8,5 +8,5 @@ set :server, :puma
 set :port, 8080
 
 get '/' do
-  json message: 'Main api route'
+  json message: 'Main API route'
 end
