@@ -1,4 +1,4 @@
-ruby '~> 2.5.1'
+ruby '2.5.1'
 source 'https://rubygems.org'
 
 # configuring https for bundler
