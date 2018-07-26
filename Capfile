@@ -1,3 +1,4 @@
+require 'pry'
 require 'capistrano/setup'  # Load DSL and set up stages
 require 'capistrano/deploy' # Include default deployment tasks
 require 'capistrano/scm/git'
