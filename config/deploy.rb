@@ -15,7 +15,8 @@ set :bundle_jobs, 2 # Equals to amount of cores
 append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 
 after 'deploy:published', 'deploy:compile'
-after 'deploy:published',  'bundler:clean'
+after 'deploy:published', 'deploy:restart'
+after 'deploy:published', 'bundler:clean'
 
 
 namespace :deploy do
@@ -26,25 +27,15 @@ namespace :deploy do
     end
   end
 
-  desc 'Turn server on'
-  task :turn_on do
+  desc 'Restart server'
+  task :restart do
     on roles(:all) do
-      execute "echo Not implemented"
+      execute 'sudo systemctl stop nginx'
+      # Puma stop
+      # Puma start
+      execute 'sudo systemctl start nginx'
     end
   end
 
-  desc 'Turn server off'
-  task :turn_ondo do
-    on roles(:all) do
-      execute "echo Not implemented"
-    end
-  end
-
-  desc 'Purge tmp'
-  task :purge_tmp do
-    on roles(:all) do
-      execute "echo Not implemented"
-    end
-  end
 end
 
