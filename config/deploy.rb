@@ -12,7 +12,7 @@ set :bundle_jobs, 2 # Equals to amount of cores
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # append :linked_files, "config/database.yml"
-append :linked_dirs, '.bundle', 'log', 'tmp'
+append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published',  'bundler:clean'
