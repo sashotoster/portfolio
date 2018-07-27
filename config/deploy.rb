@@ -36,6 +36,4 @@ namespace :deploy do
       execute 'sudo systemctl start nginx'
     end
   end
-
 end
-
