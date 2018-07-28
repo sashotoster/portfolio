@@ -15,7 +15,6 @@ set :bundle_jobs, 2 # Equals to amount of cores
 # append :linked_files, "config/database.yml"
 append :linked_dirs, '.bundle', 'log', 'tmp/pids', 'tmp/sockets', 'client/node_modules'
 
-# Is bundle:install executed?
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
