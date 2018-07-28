@@ -6,7 +6,7 @@ config_file 'config/config.yml'
 
 set :server, :puma
 set :port, 8080
-set environment: ENV['PORTFOLIO_ENV']
+set :environment, ENV['PORTFOLIO_ENV']
 
 get '/' do
   json message: 'Main API route'
