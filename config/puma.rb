@@ -11,7 +11,7 @@ environment ENV['PORTFOLIO_ENV'] || 'production'
 app_dir = File.expand_path('../..', __FILE__)
 
 # Set up socket location
-bind "unix://#{app_dir}/tmp/sockets/puma.sock"
+bind "unix://#{app_dir}/tmp/puma.sock"
 
 activate_control_app
 
