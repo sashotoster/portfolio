@@ -8,6 +8,8 @@ set :server, :puma
 set :port, 8080
 set :environment, ENV['PORTFOLIO_ENV']
 
-get '/' do
-  json message: 'Main API route'
+namespace '/api' do
+  get '/' do
+    json message: 'Main API route'
+  end
 end
