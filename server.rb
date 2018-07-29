@@ -6,7 +6,7 @@ require 'sinatra/namespace'
 config_file 'config/config.yml'
 
 set :server, :puma
-set :environment, ENV['PORTFOLIO_ENV']
+set :environment, (ENV['PORTFOLIO_ENV'] || 'production')
 set :bind, nil
 set :port, nil
 
