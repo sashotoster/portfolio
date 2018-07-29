@@ -6,8 +6,9 @@ require 'sinatra/namespace'
 config_file 'config/config.yml'
 
 set :server, :puma
-set :port, 8080
 set :environment, ENV['PORTFOLIO_ENV']
+set :bind, nil
+set :port, nil
 
 namespace '/api' do
   get '' do
