@@ -3,20 +3,22 @@ require 'sinatra/config_file'
 require 'sinatra/json'
 require 'sinatra/namespace'
 
-config_file 'config/config.yml'
+class Backend < Sinatra::Application
 
-set :server, :puma
-set :environment, (ENV['PORTFOLIO_ENV'] || 'production')
-set :bind, nil
-set :port, nil
+  set run: false
+  set :environment, (ENV['PORTFOLIO_ENV'] || 'production')
 
-namespace '/api' do
-  get '' do
-    json message: 'Main API route'
+  config_file 'config/config.yml'
+
+  namespace '/api' do
+    get '' do
+      json message: 'Main API route'
+    end
+  end
+
+  not_found do
+    status 404
+    json error: 'Page not found'
   end
 end
 
-not_found do
-  status 404
-  json error: 'Page not found'
-end
