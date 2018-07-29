@@ -4,14 +4,15 @@ workers 2
 # Min and Max threads per worker
 threads 1, 6
 
-port 8080
-
 environment ENV['PORTFOLIO_ENV'] || 'production'
 
 app_dir = File.expand_path('../..', __FILE__)
 
-# Set up socket location
-bind "unix://#{app_dir}/tmp/puma.sock"
+if @options[:environment] == 'production'
+  bind "unix://#{app_dir}/tmp/puma.sock"
+else
+  port 8080
+end
 
 activate_control_app
 
