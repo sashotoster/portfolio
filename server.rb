@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/config_file'
 require 'sinatra/json'
+require 'sinatra/namespace'
 
 config_file 'config/config.yml'
 
