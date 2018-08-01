@@ -36,4 +36,11 @@ namespace :deploy do
       execute 'sudo systemctl start backend'
     end
   end
+
+  desc 'Notify Rollbar'
+  task :rollbar do
+    on roles(:all) do
+      execute ''
+    end
+  end
 end
