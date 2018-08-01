@@ -24,6 +24,7 @@ namespace :deploy do
   task :compile do
     on roles(:all) do
       execute "cd #{release_path}/client; npm run-script build"
+      execute "cd #{release_path}/client; gzip -9kr build"
     end
   end
 
@@ -37,10 +38,10 @@ namespace :deploy do
     end
   end
 
-  desc 'Notify Rollbar'
-  task :rollbar do
-    on roles(:all) do
-      execute ''
-    end
-  end
+  # desc 'Notify Rollbar'
+  # task :rollbar do
+  #   on roles(:all) do
+  #     execute ''
+  #   end
+  # end
 end
