@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import logo from './logo.svg';
-import './App.css';
+import AboutMe from './components/AboutMe';
+import Navigation from './components/Navigation';
+import Projects from './components/Projects';
+import './css/App.css';
+
+function NameTitle (props) {
+    return <div className="name-title"><h1>{props.name}</h1></div>
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button variant="raised" color="primary">
-          Hello World
-        </Button>
+        <NameTitle name="Aleksandra Rys"/>
+        <AboutMe/>
+        <Navigation/>
+        <Projects/>
       </div>
     );
   }
