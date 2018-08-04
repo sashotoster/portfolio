@@ -24,7 +24,7 @@ namespace :deploy do
   task :compile do
     on roles(:all) do
       execute "cd #{release_path}/client; npm run-script build"
-      execute "cd #{release_path}/client; gzip -9kr build"
+      execute "cd #{release_path}/client; gzip -9kr build" # 9th level, keep originals, recursive
     end
   end
 
