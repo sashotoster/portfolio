@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'pathname'
-require 'dotenv'
-require 'pry'
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', Pathname.new(__FILE__).realpath)
 require "bundler/setup"
+require 'dotenv'
+require 'pry'
 
 Dotenv.load('.env')
 ENV['RACK_ENV'] ||= 'production'
