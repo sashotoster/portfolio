@@ -6,6 +6,8 @@ require 'pry'
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', Pathname.new(__FILE__).realpath)
 require "bundler/setup"
 
-Dotenv.load('../.env')
+Dotenv.load('.env')
+ENV['RACK_ENV'] ||= 'production'
+
 require_relative '../server'
 Pry::CLI.start(Pry::CLI.parse_options)
