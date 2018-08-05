@@ -5,6 +5,9 @@ require 'capistrano/scm/git'
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/npm'
+require 'rollbar/capistrano3'
+require 'dotenv'
+Dotenv.load('.env')
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }

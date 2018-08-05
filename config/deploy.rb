@@ -7,10 +7,12 @@ set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 set :keep_releases, 3
 set :ssh_options, forward_agent: true
 set :format_options, log_file: 'log/capistrano.log'
-set :rvm_ruby_version, '2.5.1@backend'
+set :rvm_ruby_version, 'default'
 set :npm_target_path, -> { release_path.join('client') }
-set :bundle_jobs, 2 # Equals to amount of cores
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :bundle_jobs, 2 # Amount of cores
+set :rollbar_token, ENV['BACKEND_ROLLBAR_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :web }
 
 # append :linked_files, "config/database.yml"
 append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
