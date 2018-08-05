@@ -1,0 +1,18 @@
+[Unit]
+Description=Portfolio Backend Service
+After=network.target
+
+[Service]
+Type=simple
+User=webmaster
+Group=webmaster
+WorkingDirectory=/home/webmaster/portfolio/current
+ExecStart=/home/webmaster/.rvm/rubies/default/bin/ruby bin/server
+Restart=always
+RestartSec=10
+KillMode=mixed
+SyslogIdentifier=backend
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
