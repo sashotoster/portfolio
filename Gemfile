@@ -9,6 +9,7 @@ gem 'sinatra', '~> 2.0'
 gem 'sinatra-contrib', '~> 2.0'
 gem 'puma', '~> 3.11'
 gem 'dotenv', '~> 2.5'
+gem 'rollbar', '~> 2.16'
 
 group :development do
   gem 'capistrano', '~> 3.11'

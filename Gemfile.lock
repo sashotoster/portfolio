@@ -42,6 +42,8 @@ GEM
     rack-protection (2.0.3)
       rack
     rake (12.3.1)
+    rollbar (2.16.4)
+      multi_json
     sinatra (2.0.3)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -74,6 +76,7 @@ DEPENDENCIES
   dotenv (~> 2.5)
   pry (~> 0.11)
   puma (~> 3.11)
+  rollbar (~> 2.16)
   sinatra (~> 2.0)
   sinatra-contrib (~> 2.0)
 
