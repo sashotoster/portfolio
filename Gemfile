@@ -8,6 +8,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'sinatra', '~> 2.0'
 gem 'sinatra-contrib', '~> 2.0'
 gem 'puma', '~> 3.11'
+gem 'dotenv', '~> 2.5'
 
 group :development do
   gem 'capistrano', '~> 3.11'
