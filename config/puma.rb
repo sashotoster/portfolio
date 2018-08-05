@@ -6,7 +6,7 @@ threads 1, 6
 
 preload_app!
 
-environment ENV['RACK_ENV'] || 'production'
+environment ENV['RACK_ENV']
 
 app_dir = File.expand_path('../..', __FILE__)
 
