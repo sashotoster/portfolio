@@ -6,5 +6,4 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', Pathname.new(__FILE_
 require 'bundler/setup'
 
 Dotenv.load('../.env')
-
 load Gem.bin_path('puma', 'puma')
