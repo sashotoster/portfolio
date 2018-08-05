@@ -4,7 +4,7 @@ require 'sinatra/json'
 require 'sinatra/namespace'
 
 class Backend < Sinatra::Application
-  set :environment, (ENV['PORTFOLIO_ENV'] || 'production')
+  set :environment, (ENV['RACK_ENV'] || 'production')
 
   config_file 'config/config.yml'
 
