@@ -19,7 +19,7 @@ append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 append :linked_files, '.env', 'client/.env'
 
 after 'deploy:published', 'deploy:compile'
-after 'deploy:published', 'deploy:restart'
+after 'deploy:published', 'deploy:update_infra'
 after 'deploy:finishing', 'bundler:clean'
 
 namespace :deploy do
@@ -31,11 +31,15 @@ namespace :deploy do
     end
   end
 
-  desc 'Restart server'
-  task :restart do
+  desc 'Update and restart services'
+  task :update_infra do
     on roles(:all) do
       execute 'sudo systemctl stop nginx'
       execute 'sudo systemctl stop backend'
+      execute "sudo ln -sf #{release_path}/config/infra/backend.service /etc/systemd/system/backend.service"
+      execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
+      execute "sudo ln -sf #{release_path}/config/infra/alexandra /etc/nginx/sites-available/alexandra"
+      execute 'sudo systemctl daemon-reload'
       execute 'sudo systemctl start nginx'
       execute 'sudo systemctl start backend'
     end
