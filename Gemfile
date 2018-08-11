@@ -10,11 +10,12 @@ gem 'sinatra-contrib', '~> 2.0'
 gem 'puma', '~> 3.11'
 gem 'dotenv', '~> 2.5'
 gem 'rollbar', '~> 2.16'
+gem 'pry', '~> 0.11'
 
 group :development do
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rvm', '~> 0.1'
   gem 'capistrano-bundler', '~> 1.3'
   gem 'capistrano-npm', '~> 1.0'
-  gem 'pry', '~> 0.11'
+  gem 'pry-byebug', '~> 3.6'
 end
