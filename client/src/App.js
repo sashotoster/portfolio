@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NameTitle name="Aleksandra Rys"/>
+        <NameTitle name="Alexandra Rys"/>
         <AboutMe/>
         <Navigation/>
         <Projects/>
