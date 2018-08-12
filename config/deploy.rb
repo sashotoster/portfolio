@@ -19,7 +19,7 @@ append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 append :linked_files, '.env', 'client/.env'
 
 after 'deploy:published', 'deploy:compile'
-after 'deploy:published', 'deploy:update_infra'
+after 'deploy:published', 'deploy:infra'
 after 'deploy:finishing', 'bundler:clean'
 
 namespace :deploy do
@@ -27,12 +27,12 @@ namespace :deploy do
   task :compile do
     on roles(:all) do
       execute "cd #{release_path}/client; npm run-script build"
-      execute "cd #{release_path}/client; gzip -9kr build" # 9th level, keep originals, recursive
+      execute "cd #{release_path}/client; find build -type f -exec zopfli {} \\;"
     end
   end
 
   desc 'Update and restart services'
-  task :update_infra do
+  task :infra do
     on roles(:all) do
       execute 'sudo systemctl stop nginx'
       execute 'sudo systemctl stop backend'
