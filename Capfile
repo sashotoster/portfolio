@@ -14,5 +14,5 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 install_plugin Capistrano::SCM::Git
 
-# Stage defaults to production
-invoke :production
+# Stage defaults to production unless it's and index task to avoid the warning
+invoke :production unless Rake.application.options.show_tasks
