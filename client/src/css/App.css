@@ -1,8 +1,18 @@
+/* main styles */
+
 .App {
   text-align: center;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .name-title {
   text-transform: uppercase;
+}
+
+/* screen size dependant styles */
+
+@media screen and (min-width: 992px) {
+  .App {
+    width: 80%;
+    margin: auto;
+  }
 }
