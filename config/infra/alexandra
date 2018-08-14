@@ -18,7 +18,6 @@ server {
     proxy_pass http://unix:/home/webmaster/portfolio/current/tmp/puma.sock;
     proxy_set_header  Host $host;
     proxy_set_header  X-Real-IP $remote_addr;
-    proxy_set_header  X-Forwarded-Proto $proxy_x_forwarded_proto;
     proxy_set_header  X-Forwarded-For $remote_addr;
     proxy_set_header  X-Forwarded-Host $remote_addr;
   }
