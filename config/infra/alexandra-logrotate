@@ -1,4 +1,5 @@
 /home/webmaster/portfolio/current/log/nginx.log {
+    su webmaster webmaster
     weekly
     missingok
     rotate 4
@@ -11,6 +12,7 @@
 }
 
 /home/webmaster/portfolio/current/log/server.log {
+    su webmaster webmaster
     weekly
     missingok
     rotate 4
