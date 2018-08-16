@@ -13,20 +13,25 @@ set :bundle_jobs, 2 # Amount of cores
 set :rollbar_token, ENV['BACKEND_ROLLBAR_TOKEN']
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :web }
-set :file_permissions_paths, %w(config/infra/alexandra-logrotate)
-set :file_permissions_users, %w(root)
-set :file_permissions_groups, %w(root)
-set :file_permissions_chmod_mode, '0644'
 
 # append :linked_files, "config/database.yml"
 append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 append :linked_files, '.env', 'client/.env'
 
+after 'deploy:published', 'deploy:permissions'
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
 
 namespace :deploy do
+  desc 'Update and restart services'
+  task :permissions do
+    on roles(:all) do
+      execute "sudo chown root:root #{release_path}/config/infra/alexandra-logrotate"
+      execute "sudo chmod 644 #{release_path}/config/infra/alexandra-logrotate"
+    end
+  end
+
   desc 'Build React frontend client'
   task :compile do
     on roles(:all) do
@@ -51,8 +56,6 @@ namespace :deploy do
       execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra /etc/nginx/sites-available/alexandra"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra-logrotate /etc/logrotate.d/alexandra-logrotate"
-      execute "sudo chown root:root #{release_path}/config/infra/alexandra-logrotate"
-      execute "sudo chmod 644 #{release_path}/config/infra/alexandra-logrotate"
     end
   end
 end

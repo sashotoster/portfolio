@@ -5,7 +5,6 @@ require 'capistrano/scm/git'
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/npm'
-require 'capistrano/file-permissions'
 require 'rollbar/capistrano3'
 require 'dotenv'
 Dotenv.load('.env')
