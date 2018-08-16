@@ -7,10 +7,10 @@ server {
   server_name alexandra.rys.me;
   root /home/webmaster/portfolio/current/client/build/;
   index index.html;
+  access_log /home/webmaster/portfolio/current/logs/nginx.log info;
+  error_log /home/webmaster/portfolio/current/logs/nginx.log info;
 
   location ~* .(svg|jpg|jpeg|png|gif|ico|css|js)$ {
-    access_log off;
-    log_not_found off;
     expires max;
   }
 
