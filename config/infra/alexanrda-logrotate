@@ -1,0 +1,23 @@
+/home/webmaster/portfolio/current/log/nginx.log {
+    weekly
+    missingok
+    rotate 4
+    compress
+    notifempty
+    create 0640 webmaster webmaster
+    endscript
+    postrotate
+        sudo systemctl restart nginx
+}
+
+/home/webmaster/portfolio/current/log/server.log {
+    weekly
+    missingok
+    rotate 4
+    compress
+    notifempty
+    create 0640 webmaster webmaster
+    endscript
+    postrotate
+        sudo systemctl restart nginx
+}

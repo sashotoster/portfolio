@@ -39,6 +39,7 @@ namespace :deploy do
       execute "sudo ln -sf #{release_path}/config/infra/backend.service /etc/systemd/system/backend.service"
       execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra /etc/nginx/sites-available/alexandra"
+      execute "sudo ln -sf #{release_path}/config/infra/alexandra-logrotate /etc/logrotate.d/alexandra-logrotate"
       execute 'sudo systemctl daemon-reload'
       execute 'sudo systemctl start nginx'
       execute 'sudo systemctl start backend'
