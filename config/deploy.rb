@@ -13,6 +13,10 @@ set :bundle_jobs, 2 # Amount of cores
 set :rollbar_token, ENV['BACKEND_ROLLBAR_TOKEN']
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :web }
+set :file_permissions_paths, %w(config/infra/alexandra-logrotate)
+set :file_permissions_users, %w(root)
+set :file_permissions_groups, %w(root)
+set :file_permissions_chmod_mode, '0644'
 
 # append :linked_files, "config/database.yml"
 append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'

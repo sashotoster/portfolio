@@ -17,5 +17,6 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1'
   gem 'capistrano-bundler', '~> 1.3'
   gem 'capistrano-npm', '~> 1.0'
+  gem 'capistrano-file-permissions', '~> 1.0'
   gem 'pry-byebug', '~> 3.6'
 end
