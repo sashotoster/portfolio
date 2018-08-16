@@ -5,9 +5,9 @@
     compress
     notifempty
     create 0640 webmaster webmaster
-    endscript
     postrotate
         sudo systemctl restart nginx
+    endscript
 }
 
 /home/webmaster/portfolio/current/log/server.log {
@@ -17,7 +17,7 @@
     compress
     notifempty
     create 0640 webmaster webmaster
-    endscript
     postrotate
         sudo systemctl restart backend
+    endscript
 }
