@@ -19,7 +19,7 @@ append :linked_dirs, '.bundle', 'log', 'tmp', 'client/node_modules'
 append :linked_files, '.env', 'client/.env'
 
 after 'deploy:published', 'deploy:compile'
-after 'deploy:published', 'deploy:infra'
+after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
 
 namespace :deploy do
@@ -32,17 +32,23 @@ namespace :deploy do
   end
 
   desc 'Update and restart services'
+  task :restart do
+    on roles(:all) do
+      execute 'sudo systemctl daemon-reload'
+      execute 'sudo systemctl restart nginx'
+      execute 'sudo systemctl restart backend'
+    end
+  end
+
+  desc 'Links infrastructure configs: nginx, systemd, logrotate'
   task :infra do
     on roles(:all) do
-      execute 'sudo systemctl stop nginx'
-      execute 'sudo systemctl stop backend'
       execute "sudo ln -sf #{release_path}/config/infra/backend.service /etc/systemd/system/backend.service"
       execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra /etc/nginx/sites-available/alexandra"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra-logrotate /etc/logrotate.d/alexandra-logrotate"
-      execute 'sudo systemctl daemon-reload'
-      execute 'sudo systemctl start nginx'
-      execute 'sudo systemctl start backend'
+      execute "sudo chown root:root #{release_path}/config/infra/alexandra-logrotate"
+      execute "sudo chmod 644 #{release_path}/config/infra/alexandra-logrotate"
     end
   end
 end
