@@ -11,8 +11,9 @@ ExecStart=/home/webmaster/.rvm/rubies/default/bin/ruby bin/server
 Restart=always
 RestartSec=10
 KillMode=mixed
-SyslogIdentifier=backend
 TimeoutSec=30
+StandardOutput=file:/home/webmaster/portfolio/current/log/server.log
+StandardError=file:/home/webmaster/portfolio/current/log/server.log
 
 [Install]
 WantedBy=multi-user.target
