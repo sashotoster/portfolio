@@ -19,5 +19,5 @@
     create 0640 webmaster webmaster
     endscript
     postrotate
-        sudo systemctl restart nginx
+        sudo systemctl restart backend
 }
