@@ -6,6 +6,7 @@
     compress
     notifempty
     create 0640 webmaster webmaster
+    compress
     postrotate
         sudo systemctl restart nginx
     endscript
@@ -19,6 +20,7 @@
     compress
     notifempty
     create 0640 webmaster webmaster
+    compress
     postrotate
         sudo systemctl restart backend
     endscript
