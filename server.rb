@@ -13,7 +13,6 @@ end
 class Backend < Sinatra::Application
   use Rollbar::Middleware::Sinatra
   set :environment, ENV['RACK_ENV']
-  set :logging, Logger::INFO
 
   config_file 'config/config.yml'
 
