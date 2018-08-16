@@ -9,7 +9,7 @@ server {
   index index.html;
   access_log /home/webmaster/portfolio/current/log/nginx.log;
   # Careful - intense logging
-  error_log /home/webmaster/portfolio/current/log/nginx.log debug;
+  error_log /home/webmaster/portfolio/current/log/nginx.log info;
 
   location ~* .(svg|jpg|jpeg|png|gif|ico|css|js)$ {
     expires max;
