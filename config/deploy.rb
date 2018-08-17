@@ -46,6 +46,7 @@ namespace :deploy do
       execute 'sudo systemctl daemon-reload'
       execute 'sudo systemctl restart nginx'
       execute 'sudo systemctl restart backend'
+      execute 'sudo systemctl restart remote_syslog'
     end
   end
 
@@ -56,6 +57,7 @@ namespace :deploy do
       execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra /etc/nginx/sites-available/alexandra"
       execute "sudo ln -sf #{release_path}/config/infra/alexandra-logrotate /etc/logrotate.d/alexandra-logrotate"
+      execute "sudo ln -sf #{release_path}/config/infra/log_files.yml /etc/log_files.yml"
     end
   end
 end

@@ -1,0 +1,8 @@
+files:
+  - /home/webmaster/portfolio/current/log/nginx.log
+  - /home/webmaster/portfolio/current/log/server.log
+destination:
+  host: logs7.papertrailapp.com
+  port: 13790
+  protocol: tls
+new_file_check_interval: "10" # Check every 10 seconds
