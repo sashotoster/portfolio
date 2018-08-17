@@ -22,6 +22,7 @@ after 'deploy:published', 'deploy:permissions'
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
+after 'deploy:infra', 'deploy:restart'
 
 namespace :deploy do
   desc 'Update and restart services'
