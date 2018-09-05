@@ -1,18 +1,25 @@
 /* main styles */
 
 .App {
-  text-align: center;
+  width: 80%;
+  margin: auto;
 }
 
 .name-title {
   text-transform: uppercase;
+  text-align: center;
+}
+
+.about-me img {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 /* screen size dependant styles */
 
 @media screen and (min-width: 992px) {
   .App {
-    width: 80%;
-    margin: auto;
+    width: 60%;
   }
 }
