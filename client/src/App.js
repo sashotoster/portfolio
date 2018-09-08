@@ -17,7 +17,7 @@ function AboutMe (props) {
                         <img src={props.photo}/>
                     </Grid>
                 </Grid>
-                <Grid item container md={6} direction={"column"} alignItems={"stretch"} justify={"space-between"}>
+                <Grid item container md={6} direction={"column"} justify={"space-between"}>
                     <Grid item><div>{props.text.repeat(50)}</div></Grid>
                     <Grid item>
                         test
