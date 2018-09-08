@@ -9,6 +9,13 @@ function NameTitle (props) {
 }
 
 function AboutMe (props) {
+
+    const linkIcons = props.links.map((linkData) =>
+        <a target="_blank" href={linkData.href} title={linkData.icon.charAt(0).toUpperCase() + linkData.icon.slice(1)}>
+            <i className={"fab fa-2x fa-"+linkData.icon}></i>
+        </a>
+    );
+
     return (
         <div className="about-me">
             <Grid container spacing={24}>
@@ -18,10 +25,8 @@ function AboutMe (props) {
                     </Grid>
                 </Grid>
                 <Grid item container md={6} direction={"column"} justify={"space-between"}>
-                    <Grid item><div>{props.text.repeat(50)}</div></Grid>
-                    <Grid item>
-                        test
-                    </Grid>
+                    <Grid item><div>{props.text}</div></Grid>
+                    <Grid item style={{marginTop: 10}}>{linkIcons}</Grid>
                 </Grid>
             </Grid>
         </div>
@@ -29,15 +34,29 @@ function AboutMe (props) {
 }
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = this.getInitialState();
+  }
   render() {
     return (
-      <div className="App">
-        <NameTitle name="Alexandra Rys"/>
-        <AboutMe photo="https://cdn.cnn.com/cnnnext/dam/assets/141230145304-one-square-meter---logo-large-169.png" text="here goes the text "/>
-        <Navigation/>
-        <Projects/>
-      </div>
+        <div className="App">
+            <NameTitle name="Alexandra Rys"/>
+            <AboutMe photo={this.state.photo} text={this.state.text} links={this.state.links}/>
+            <Navigation/>
+            <Projects/>
+        </div>
     );
+  }
+  getInitialState() {
+      return {
+          photo: 'https://cdn.cnn.com/cnnnext/dam/assets/141230145304-one-square-meter---logo-large-169.png',
+          text: 'here goes the text'.repeat(50),
+          links: [
+              {icon: 'github', href: 'https://github.com/sashotoster'},
+              {icon: 'instagram', href: 'https://www.instagram.com/sashotoster'},
+          ]
+      }
   }
 }
 

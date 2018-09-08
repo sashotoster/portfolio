@@ -20,6 +20,11 @@
   height: 100%;
 }
 
+.about-me a {
+  color: #000000;
+  margin-right: 0.5rem;
+}
+
 /* screen size dependant styles */
 
 @media screen and (min-width: 1200px) {
