@@ -22,8 +22,15 @@
 
 /* screen size dependant styles */
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
+  .App {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1700px) {
   .App {
     width: 60%;
   }
 }
+

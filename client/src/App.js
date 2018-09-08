@@ -11,12 +11,17 @@ function NameTitle (props) {
 function AboutMe (props) {
     return (
         <div className="about-me">
-            <Grid container spacing={24} alignItems={"flex-start"}>
-                <Grid item container md={6}>
-                    <img src={props.photo}/>
+            <Grid container spacing={24}>
+                <Grid item container md={6} alignItems={"flex-start"}>
+                    <Grid item>
+                        <img src={props.photo}/>
+                    </Grid>
                 </Grid>
-                <Grid item container md={6} alignContent={"flex-start"}>
-                    <div>{props.text.repeat(50)}</div>
+                <Grid item container md={6} direction={"column"} alignItems={"stretch"} justify={"space-between"}>
+                    <Grid item><div>{props.text.repeat(50)}</div></Grid>
+                    <Grid item>
+                        test
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
