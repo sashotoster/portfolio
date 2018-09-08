@@ -25,6 +25,10 @@
   margin-right: 0.5rem;
 }
 
+.about-me .about-me-paragraph {
+  margin-top: 0;
+}
+
 /* screen size dependant styles */
 
 @media screen and (min-width: 1200px) {
