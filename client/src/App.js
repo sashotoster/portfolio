@@ -11,13 +11,13 @@ function NameTitle (props) {
 function AboutMe (props) {
 
     const linkIcons = props.links.map((linkData) =>
-        <a key={linkData.icon} target="_blank" href={linkData.href} title={linkData.icon.charAt(0).toUpperCase() + linkData.icon.slice(1)}>
+        <a target="_blank" href={linkData.href} title={linkData.icon.charAt(0).toUpperCase() + linkData.icon.slice(1)}>
             <i className={"fab fa-2x fa-"+linkData.icon}></i>
         </a>
     );
 
-    const aboutText = props.about.map((paragraph, index) =>
-        <p key={index} className="about-me-paragraph">{paragraph}</p>
+    const aboutText = props.about.map((paragraph) =>
+        <p className="about-me-paragraph">{paragraph}</p>
     );
 
     return (

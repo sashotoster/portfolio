@@ -5,13 +5,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 const styles = {
-    navmain: {
+    root: {
         flexGrow: 1,
-        backgroundColor: '#37474F',
     },
-    navtabs: {
-        color: "#CFD8DC",
-    }
 };
 
 class Navigation extends Component {
@@ -26,11 +22,12 @@ class Navigation extends Component {
 
     render() {
         return (
-            <Paper className="navigation" className={this.props.classes.navmain}>
-                <Tabs className={this.props.classes.navtabs}
+            <Paper className="navigation">
+                <Tabs
                     value={this.state.value}
                     onChange={this.handleChange}
                     indicatorColor="primary"
+                    textColor="primary"
                     centered
                 >
                     <Tab label="Item One" />
