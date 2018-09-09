@@ -11,13 +11,13 @@ function NameTitle (props) {
 function AboutMe (props) {
 
     const linkIcons = props.links.map((linkData) =>
-        <a target="_blank" href={linkData.href} title={linkData.icon.charAt(0).toUpperCase() + linkData.icon.slice(1)}>
+        <a target="_blank" href={linkData.href} title={linkData.icon.charAt(0).toUpperCase() + linkData.icon.slice(1)} key={linkData.icon}>
             <i className={"fab fa-2x fa-"+linkData.icon}></i>
         </a>
     );
 
-    const aboutText = props.about.map((paragraph) =>
-        <p className="about-me-paragraph">{paragraph}</p>
+    const aboutText = props.about.map((paragraph, index) =>
+        <p className="about-me-paragraph" key={index}>{paragraph}</p>
     );
 
     return (
@@ -25,7 +25,7 @@ function AboutMe (props) {
             <Grid container spacing={24}>
                 <Grid item container md={6} alignItems={"flex-start"}>
                     <Grid item>
-                        <img src={props.photo}/>
+                        <img src={props.photo} alt="My face was supposed to be here"/>
                     </Grid>
                 </Grid>
                 <Grid item container md={6} direction={"column"} justify={"space-between"}>
