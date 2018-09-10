@@ -49,9 +49,18 @@ namespace :deploy do
       execute 'sudo systemctl restart remote_syslog'
     end
   end
+end
+
+namespace :infra do
+  desc 'Update NPM'
+  task :npm do
+    on roles(:all) do
+      execute 'sudo npm install -g npm'
+    end
+  end
 
   desc 'Links infrastructure configs: nginx, systemd, logrotate'
-  task :infra do
+  task :symlinks do
     on roles(:all) do
       execute "sudo ln -sf #{release_path}/config/infra/backend.service /etc/systemd/system/backend.service"
       execute "sudo ln -sf #{release_path}/config/infra/nginx.conf /etc/nginx/nginx.conf"
@@ -60,5 +69,5 @@ namespace :deploy do
       execute "sudo ln -sf #{release_path}/config/infra/log_files.yml /etc/log_files.yml"
     end
   end
-  after 'deploy:infra', 'deploy:restart'
+  after 'infra:symlinks', 'deploy:restart'
 end
