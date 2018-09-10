@@ -22,7 +22,6 @@ after 'deploy:published', 'deploy:permissions'
 after 'deploy:published', 'deploy:compile'
 after 'deploy:published', 'deploy:restart'
 after 'deploy:finishing', 'bundler:clean'
-after 'deploy:infra', 'deploy:restart'
 
 namespace :deploy do
   desc 'Update and restart services'
@@ -61,4 +60,5 @@ namespace :deploy do
       execute "sudo ln -sf #{release_path}/config/infra/log_files.yml /etc/log_files.yml"
     end
   end
+  after 'deploy:infra', 'deploy:restart'
 end
