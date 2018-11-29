@@ -1,7 +1,7 @@
 server {
     server_name rys.me;
-    return 302 $scheme://alexandra.rys.me$request_uri;
     rewrite ^/patterns$ https://www.google.com redirect;
+    return 302 $scheme://alexandra.rys.me$request_uri;
 }
 
 server {
