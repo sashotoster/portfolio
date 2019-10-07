@@ -15,7 +15,7 @@ gem 'pry', '~> 0.11'
 group :development do
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rvm', '~> 0.1'
-  gem 'capistrano-bundler', path: '/Users/nikolay/development/bundler'
+  gem 'capistrano-bundler', '~> 1.6'
   gem 'capistrano-npm', '~> 1.0'
   gem 'pry-byebug', '~> 3.6'
 end
