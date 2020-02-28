@@ -40,7 +40,7 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
-    puma (3.11.4)
+    puma (3.12.3)
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
@@ -79,7 +79,7 @@ DEPENDENCIES
   dotenv (~> 2.5)
   pry (~> 0.11)
   pry-byebug (~> 3.6)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rollbar (~> 2.16)
   sinatra (~> 2.0)
   sinatra-contrib (~> 2.0)
