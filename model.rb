@@ -18,9 +18,14 @@ module Model
     if post['archived']
        post['score']
     else
-      data = prepare_data(post, target_days)
-      query_google(data)
+      prepare_data(post, target_days)
     end
+  end
+
+  def query_google(data)
+    `curl -X POST -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" \
+    https://europe-west4-aiplatform.googleapis.com/v1/projects/#{PROJECT_ID}/locations/europe-west4/endpoints/#{ENDPOINT_ID}:predict \
+    -d "#{data}"`
   end
 
   private
@@ -65,11 +70,6 @@ module Model
     }.to_json.to_s
   end
 
-  def query_google(data)
-    `curl -X POST -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" \
-    https://europe-west4-aiplatform.googleapis.com/v1/projects/#{PROJECT_ID}/locations/europe-west4/endpoints/#{ENDPOINT_ID}:predict \
-    -d "#{data}"`
-  end
 end
 
 
