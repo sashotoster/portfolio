@@ -23,12 +23,12 @@ class Backend < Sinatra::Application
       json message: 'Main API route'
     end
 
-    get '/reddit-trend' do
-      url = 'https://www.reddit.com/r/personalfinance/comments/owhy0r/leverage_through_leaps_for_the_diy_investor/'
+    post '/reddit-trend' do
+      post_data = JSON.parse(File.read('sample_data.json'))
       target_days = 60
 
       google_response = begin
-        Model.get_estimate(url, target_days)
+        Model.get_estimate(post_data, target_days)
       rescue => error
         error.message + '||' + error.backtrace.inspect
       end

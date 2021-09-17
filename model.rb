@@ -5,7 +5,7 @@ require 'pry'
 require 'scylla' # https://github.com/hashwin/scylla
 require 'nlp_pure/segmenting/default_word'  # https://github.com/parhamr/nlp-pure
 require 'nlp_pure/segmenting/default_sentence'
-require 'http'
+require 'json'
 
 module Model
   extend self
@@ -13,23 +13,16 @@ module Model
   ENDPOINT_ID="6503919141550817280"
   PROJECT_ID="reddit-trend"
 
-  def get_estimate(url, target_days)
-    post = get_post(url)
-
-    if post post['archived']
-       post['score']
+  def get_estimate(post_data=SAMPLE_DATA, target_days)
+    if post post_data['archived']
+       post_data['score']
     else
-      data = prepare_data(post, target_days)
+      data = prepare_data(post_data, target_days)
       query_google(data)
     end
   end
 
   private
-  def get_post(url)
-    http = HTTP.accept(:json)
-    http.get("#{url}.json").parse.first['data']["children"].first['data']
-  end
-
   def get_passed_days(post)
     (Time.now.to_i - post["created_utc"]) / (60*60*24)
   end
