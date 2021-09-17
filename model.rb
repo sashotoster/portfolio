@@ -18,7 +18,7 @@ module Model
     if post['archived']
        post['score']
     else
-      prepare_data(post, target_days)
+      prepare_data(post, target_days).to_json
     end
   end
 
@@ -67,7 +67,7 @@ module Model
         'body_words' => NlpPure::Segmenting::DefaultWord.parse(post['selftext']).size,
         'body_sentences' => NlpPure::Segmenting::DefaultSentence.parse(post['selftext']).reject { |c| c.empty? }.size,
        }.transform_values(&:to_s)]
-    }.to_json.to_s
+    }
   end
 
 end
