@@ -22,6 +22,12 @@ class Backend < Sinatra::Application
     end
   end
 
+  namespace '/reddit-trend' do
+    get '' do
+      json message: 'reddit-trend'
+    end
+  end
+
   not_found do
     status 404
     json error: 'Page not found'
