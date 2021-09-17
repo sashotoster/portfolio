@@ -25,7 +25,6 @@ class Backend < Sinatra::Application
 
     post '/reddit-trend' do
       output = begin
-        request.body.rewind
         @post_data = JSON.parse request.body.read
         query_data = Model.get_estimate(@post_data, params['target_days'].to_i)
       rescue => error
