@@ -13,7 +13,7 @@ module Model
   ENDPOINT_ID="6503919141550817280"
   PROJECT_ID="reddit-trend"
 
-  def get_estimate(post_data=SAMPLE_DATA, target_days)
+  def get_estimate(post_data, target_days)
     if post post_data['archived']
        post_data['score']
     else
