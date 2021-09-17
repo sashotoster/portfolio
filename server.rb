@@ -19,22 +19,19 @@ class Backend < Sinatra::Application
   config_file 'config/config.yml'
 
   namespace '/api' do
-    before do
-      request.body.rewind
-      @post_data = JSON.parse request.body.read
-    end
-
     get '' do
       json message: 'Main API route'
     end
 
     post '/reddit-trend' do
-      google_response = begin
+      output = begin
+        request.body.rewind
+        @post_data = JSON.parse request.body.read
         query_data = Model.get_estimate(@post_data, params['target_days'].to_i)
       rescue => error
         "Sent: \n" + query_data + "\n" + error.message + "\n" + error.backtrace.inspect
       end
-      json message: google_response
+      json message: output
     end
   end
 
