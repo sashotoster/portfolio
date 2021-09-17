@@ -12,7 +12,7 @@ class Model
   PROJECT_ID="reddit-trend"
 
   def get_estimate(url, target_days)
-    post = get_post
+    post = get_post(url)
 
     if post post['archived']
        post['score']
@@ -23,7 +23,7 @@ class Model
   end
 
   private
-  def get_post
+  def get_post(url)
     http = HTTP.accept(:json)
     http.get("#{url}.json").parse.first['data']["children"].first['data']
   end
