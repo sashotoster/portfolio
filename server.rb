@@ -30,7 +30,7 @@ class Backend < Sinatra::Application
       rescue => error
         "Sent: \n" + query_data + "\n" + error.message + "\n" + error.backtrace.inspect
       end
-      json message: google_response
+      json days: params['target_days'].to_i, expected_change: google_response
     end
   end
 

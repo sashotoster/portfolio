@@ -16,13 +16,11 @@ module Model
   def get_estimate(post_data, target_days)
     post = JSON.parse(post_data).first['data']["children"].first['data']
     if post['archived']
-       {"lower_bound"=>post['score'].to_i,
-        "value"      =>post['score'].to_i,
-        "upper_bound"=>post['score'].to_i}
+       post['score'].to_i
     else
       query_data = prepare_data(post, target_days)
       google_response = query_google(query_data)
-      JSON.parse(google_response)['predictions'].first.transform_values(&:to_i)
+      JSON.parse(google_response)['predictions'].first['value'].to_i
     end
   end
 
