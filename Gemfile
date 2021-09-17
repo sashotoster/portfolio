@@ -19,3 +19,10 @@ group :development do
   gem 'capistrano-npm', '~> 1.0'
   gem 'pry-byebug', '~> 3.6'
 end
+
+group :reddit_trend do
+  gem 'scylla'
+  gem 'nlp-pure'
+  gem 'sqlite3'
+  gem "http"
+end
