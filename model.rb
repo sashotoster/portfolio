@@ -66,7 +66,7 @@ module Model
         'body_symbols' => post['selftext'].gsub(/\s+/, "").size,
         'body_words' => NlpPure::Segmenting::DefaultWord.parse(post['selftext']).size,
         'body_sentences' => NlpPure::Segmenting::DefaultSentence.parse(post['selftext']).reject { |c| c.empty? }.size,
-       }.transform_values(&:to_s)]
+       }]
     }
   end
 
