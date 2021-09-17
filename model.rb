@@ -14,7 +14,7 @@ module Model
   PROJECT_ID="reddit-trend"
 
   def get_estimate(post_data, target_days)
-    if post post_data['archived']
+    if post_data['archived']
        post_data['score']
     else
       data = prepare_data(post_data, target_days)
