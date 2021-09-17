@@ -14,10 +14,11 @@ module Model
   PROJECT_ID="reddit-trend"
 
   def get_estimate(post_data, target_days)
-    if post_data['archived']
-       post_data['score']
+    post = JSON.parse(post_data).first['data']["children"].first['data']
+    if post['archived']
+       post['score']
     else
-      data = prepare_data(post_data, target_days)
+      data = prepare_data(post, target_days)
       query_google(data)
     end
   end

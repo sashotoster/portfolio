@@ -24,7 +24,7 @@ class Backend < Sinatra::Application
     end
 
     post '/reddit-trend' do
-      post_data = JSON.parse(File.read('sample_data.json'))
+      post_data = File.read('sample_data.json')
       target_days = 60
 
       google_response = begin
