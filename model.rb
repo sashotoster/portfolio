@@ -8,6 +8,8 @@ require 'nlp_pure/segmenting/default_sentence'
 require 'http'
 
 module Model
+  extend self
+
   ENDPOINT_ID="6503919141550817280"
   PROJECT_ID="reddit-trend"
 
