@@ -16,19 +16,23 @@ module Model
   def get_estimate(post_data, target_days)
     post = JSON.parse(post_data).first['data']["children"].first['data']
     if post['archived']
-       post['score']
+       {"lower_bound"=>post['score'].to_i,
+        "value"      =>post['score'].to_i,
+        "upper_bound"=>post['score'].to_i}
     else
-      prepare_data(post, target_days).to_json
+      query_data = prepare_data(post, target_days)
+      google_response = query_google(query_data)
+      JSON.parse(google_response)['predictions'].first.transform_values(&:to_i)
     end
   end
 
+  private
   def query_google(data)
     `curl -X POST -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" \
     https://europe-west4-aiplatform.googleapis.com/v1/projects/#{PROJECT_ID}/locations/europe-west4/endpoints/#{ENDPOINT_ID}:predict \
     -d "#{data}"`
   end
 
-  private
   def get_passed_days(post)
     (Time.now.to_i - post["created_utc"]) / (60*60*24)
   end
@@ -66,8 +70,8 @@ module Model
         'body_symbols' => post['selftext'].gsub(/\s+/, "").size,
         'body_words' => NlpPure::Segmenting::DefaultWord.parse(post['selftext']).size,
         'body_sentences' => NlpPure::Segmenting::DefaultSentence.parse(post['selftext']).reject { |c| c.empty? }.size,
-       }.transform_values(&:to_s)]
-    }
+       }.transform_values{|v| "\"#{v}\""}]
+    }.to_json
   end
 
 end

@@ -29,9 +29,8 @@ class Backend < Sinatra::Application
 
       google_response = begin
         query_data = Model.get_estimate(post_data, target_days)
-        "Sent: \n" + query_data + "\n" + Model.query_google(query_data)
       rescue => error
-        error.message + '||' + error.backtrace.inspect
+        "Sent: \n" + query_data + "\n" + error.message + "\n" + error.backtrace.inspect
       end
       json message: google_response
     end
