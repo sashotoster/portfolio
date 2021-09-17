@@ -39,7 +39,7 @@ module Model
   end
 
   def prepare_data(post, target_days)
-    passed_days = (Time.now.to_i - post["created_utc"]) / (60*60*24)
+    passed_days = ((Time.now.to_i - post["created_utc"]) / (60*60*24)).to_i
     normalized_target_days = (passed_days + target_days > 180) ? (180 - passed_days) : target_days
     {
       'instances' => [{
