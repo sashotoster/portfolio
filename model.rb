@@ -37,8 +37,7 @@ module Model
     passed_days = (Time.now.to_i - post["created_utc"]) / (60*60*24)
     normalized_target_days = (passed_days + target_days > 180) ? (180 - passed_days) : target_days
     {
-      'instances' => [
-        {
+      'instances' => [{
         'target_days' => normalized_target_days,
         'passed_days' => passed_days,
         'current_score' => post['score'],
@@ -62,8 +61,7 @@ module Model
         'body_symbols' => post['selftext'].gsub(/\s+/, "").size,
         'body_words' => NlpPure::Segmenting::DefaultWord.parse(post['selftext']).size,
         'body_sentences' => NlpPure::Segmenting::DefaultSentence.parse(post['selftext']).reject { |c| c.empty? }.size,
-        }
-      ]
+       }.transform_values(&:to_s)]
     }.to_json.to_s
   end
 
