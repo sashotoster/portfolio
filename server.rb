@@ -21,10 +21,8 @@ class Backend < Sinatra::Application
       json message: 'Main API route'
     end
 
-    namespace '/reddit-trend' do
-      get '' do
-        json message: 'reddit-trend'
-      end
+    get '/reddit-trend' do
+      json message: 'reddit-trend'
     end
   end
 
