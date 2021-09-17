@@ -15,12 +15,16 @@ module Model
 
   def get_estimate(post_data, target_days)
     post = JSON.parse(post_data).first['data']["children"].first['data']
+
     if post['archived']
-       post['score'].to_i
+      {days: 0, expected_rating: post['score'].to_i}
     else
-      query_data = prepare_data(post, target_days)
+      passed_days = ((Time.now.to_i - post["created_utc"]) / (60*60*24)).to_i
+      normalized_target_days = (passed_days + target_days > 180) ? (180 - passed_days) : target_days
+      query_data = prepare_data(post, passed_days, normalized_target_days)
       google_response = query_google(query_data)
-      post['score'].to_i + JSON.parse(google_response)['predictions'].first['value'].to_i
+      expected_rating = post['score'].to_i + JSON.parse(google_response)['predictions'].first['value'].to_i
+      {days: normalized_target_days, expected_rating: expected_rating}
     end
   end
 
@@ -40,12 +44,10 @@ module Model
     post['archived'] || passed_days + target_days > 180
   end
 
-  def prepare_data(post, target_days)
-    passed_days = ((Time.now.to_i - post["created_utc"]) / (60*60*24)).to_i
-    normalized_target_days = (passed_days + target_days > 180) ? (180 - passed_days) : target_days
+  def prepare_data(post, passed_days, target_days)
     {
       'instances' => [{
-        'target_days' => normalized_target_days,
+        'target_days' => target_days,
         'passed_days' => passed_days,
         'current_score' => post['score'],
         'upvote_ratio' => post['upvote_ratio'],
