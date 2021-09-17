@@ -20,7 +20,7 @@ module Model
     else
       query_data = prepare_data(post, target_days)
       google_response = query_google(query_data)
-      JSON.parse(google_response)['predictions'].first['value'].to_i
+      post['score'].to_i + JSON.parse(google_response)['predictions'].first['value'].to_i
     end
   end
 
