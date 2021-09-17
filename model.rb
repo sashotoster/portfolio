@@ -7,7 +7,7 @@ require 'nlp_pure/segmenting/default_word'  # https://github.com/parhamr/nlp-pur
 require 'nlp_pure/segmenting/default_sentence'
 require 'http'
 
-class Model
+module Model
   ENDPOINT_ID="6503919141550817280"
   PROJECT_ID="reddit-trend"
 

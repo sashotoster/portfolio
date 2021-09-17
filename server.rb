@@ -4,6 +4,8 @@ require 'sinatra/json'
 require 'sinatra/namespace'
 require 'rollbar/middleware/sinatra'
 
+require_relative 'model.rb'
+
 Rollbar.configure do |config|
   config.enabled = ENV['RACK_ENV'] == 'production'
   config.environment = ENV['RACK_ENV']
@@ -22,7 +24,15 @@ class Backend < Sinatra::Application
     end
 
     get '/reddit-trend' do
-      json message: 'reddit-trend'
+      url = 'https://www.reddit.com/r/personalfinance/comments/owhy0r/leverage_through_leaps_for_the_diy_investor/'
+      target_days = 60
+
+      google_response = begin
+        Model.get_estimate(url, target_days)
+      rescue => error
+        error.message + '||' + error.backtrace.inspect
+      end
+      json message: google_response
     end
   end
 
