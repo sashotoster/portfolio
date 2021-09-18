@@ -15,11 +15,11 @@ module Model
 
   def get_estimate(post_data)
     post = JSON.parse(post_data).first['data']["children"].first['data']
+    passed_days = ((Time.now.to_i - post["created_utc"]).to_f / (60*60*24).to_f).ceil
 
-    if post['archived']
+    if post['archived'] || passed_days >= 180
       {days: 0, expected_rating: post['score'].to_i}
     else
-      passed_days = ((Time.now.to_i - post["created_utc"]) / (60*60*24)).to_i
       target_days = 180 - passed_days
       query_data = prepare_data(post, passed_days, target_days)
       google_response = query_google(query_data)
