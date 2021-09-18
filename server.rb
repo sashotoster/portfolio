@@ -26,7 +26,7 @@ class Backend < Sinatra::Application
     post '/reddit-trend' do
       google_response = begin
         request.body.rewind
-        query_data = Model.get_estimate(request.body.read, params['target_days'].to_i)
+        query_data = Model.get_estimate(request.body.read)
       rescue => error
         "Sent: \n" + query_data + "\n" + error.message + "\n" + error.backtrace.inspect
       end

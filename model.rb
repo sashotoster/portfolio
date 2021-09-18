@@ -13,18 +13,18 @@ module Model
   ENDPOINT_ID="6503919141550817280"
   PROJECT_ID="reddit-trend"
 
-  def get_estimate(post_data, target_days)
+  def get_estimate(post_data)
     post = JSON.parse(post_data).first['data']["children"].first['data']
 
     if post['archived']
       {days: 0, expected_rating: post['score'].to_i}
     else
       passed_days = ((Time.now.to_i - post["created_utc"]) / (60*60*24)).to_i
-      normalized_target_days = (passed_days + target_days > 180) ? (180 - passed_days) : target_days
-      query_data = prepare_data(post, passed_days, normalized_target_days)
+      target_days = 180 - passed_days
+      query_data = prepare_data(post, passed_days, target_days)
       google_response = query_google(query_data)
       expected_rating = post['score'].to_i + JSON.parse(google_response)['predictions'].first['value'].to_i
-      {days: normalized_target_days, expected_rating: expected_rating}
+      {will_be_archived_in_days: target_days, expected_rating: expected_rating}
     end
   end
 
