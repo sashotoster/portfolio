@@ -18,13 +18,13 @@ module Model
     passed_days = ((Time.now.to_i - post["created_utc"]).to_f / (60*60*24).to_f).to_i
 
     if post['archived'] || passed_days >= 180
-      {days: 0, expected_rating: post['score'].to_i}
+      {days: 0, expected_rating: post['score'].to_i, current_rating: post['score'].to_i}
     else
       target_days = 180 - passed_days
       query_data = prepare_data(post, passed_days, target_days)
       google_response = query_google(query_data)
       expected_rating = post['score'].to_i + JSON.parse(google_response)['predictions'].first['value'].to_i
-      {will_be_archived_in_days: target_days, expected_rating: expected_rating}
+      {will_be_archived_in_days: target_days, expected_rating: expected_rating, current_rating: post['score'].to_i}
     end
   end
 
