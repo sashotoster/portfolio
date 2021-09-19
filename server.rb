@@ -3,6 +3,7 @@ require 'sinatra/config_file'
 require 'sinatra/json'
 require 'sinatra/namespace'
 require 'rollbar/middleware/sinatra'
+require 'sinatra/cross_origin'
 
 require_relative 'model.rb'
 
@@ -24,6 +25,7 @@ class Backend < Sinatra::Application
     end
 
     post '/reddit-trend' do
+      cross_origin
       google_response = begin
         request.body.rewind
         query_data = Model.get_estimate(request.body.read)
@@ -31,6 +33,11 @@ class Backend < Sinatra::Application
         "Sent: \n" + query_data + "\n" + error.message + "\n" + error.backtrace.inspect
       end
       json google_response
+    end
+    options "/reddit-trend" do
+      response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
+      response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+      200
     end
   end
 
