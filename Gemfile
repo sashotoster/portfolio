@@ -25,5 +25,4 @@ group :reddit_trend do
   gem 'nlp-pure'
   gem 'sqlite3'
   gem "http"
-  gem 'sinatra-cross_origin'
 end

@@ -3,7 +3,6 @@ require 'sinatra/config_file'
 require 'sinatra/json'
 require 'sinatra/namespace'
 require 'rollbar/middleware/sinatra'
-require 'sinatra/cross_origin'
 
 require_relative 'model.rb'
 
@@ -25,7 +24,7 @@ class Backend < Sinatra::Application
     end
 
     post '/reddit-trend' do
-      cross_origin
+      response.headers['Access-Control-Allow-Origin'] = '*'
       google_response = begin
         request.body.rewind
         query_data = Model.get_estimate(request.body.read)
