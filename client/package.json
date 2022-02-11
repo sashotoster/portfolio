@@ -56,7 +56,7 @@
   "devDependencies": {
     "interpolate-html-plugin": "^3.0.0",
     "locus": "^2.0.1",
-    "ajv": "^6.5.2"
+    "ajv": "^6.12.3"
   },
   "jest": {
     "collectCoverageFrom": [
