@@ -7,7 +7,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # Core
 gem 'sinatra', '~> 2.0'
 gem 'sinatra-contrib', '~> 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'dotenv', '~> 2.5'
 gem 'rollbar', '~> 2.16'
 gem 'pry', '~> 0.11'
