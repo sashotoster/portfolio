@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # Core
-gem 'sinatra', '~> 2.0'
-gem 'sinatra-contrib', '~> 2.0'
+gem 'sinatra', '~> 2.2'
+gem 'sinatra-contrib', '~> 2.2'
 gem 'puma', '~> 3.11'
 gem 'dotenv', '~> 2.5'
 gem 'rollbar', '~> 2.16'
